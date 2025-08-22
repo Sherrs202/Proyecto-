@@ -2,3 +2,17 @@ La cantina llamada la "Sucursal" tiene muchos clientes a lo largo de la semana, 
 
 
 Este programa busca solucionar el problema de la comandas cambiandolo por uno mas sencillo y rapido de utilizar en el cual te diga que bebida pidio y cual es el costo de es abebida como también agregando el precio final y el precio por bebida clasificando cada una de ellas en su respectivo grupo 
+
+
+Algoritmo 
+Inicio 
+Bebidas(B)
+Botellas(Bot)
+Registrar bebida 
+  si (R=s)
+    si (B=Tequila)
+      SumaT=SumaT+valor 
+    si no 
+      Preguntar por otra bebida 
+  si no 
+    suma total = SumaT
