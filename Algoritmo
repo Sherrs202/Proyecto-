@@ -8,7 +8,7 @@ inicio
             Precio = 80
         SiNo
             Si Bebida = "Cerveza" Entonces
-                Precio = 350
+                Precio = 55
             SiNo
                 Si Bebida = "Whisky" Entonces
                     Precio = 100
