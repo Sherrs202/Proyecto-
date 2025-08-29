@@ -1,11 +1,8 @@
 Algoritmo ComandasSucursal
-
-    Definir Bebida, Botella, Precio, SumaT Como Real
     SumaT = 0
 inicio
     ciclar 
-        Escribir "¿Qué bebida deseas pedir?"
-        Leer Bebida
+        ¿Qué bebida deseas pedir?
 
         Si Bebida = "Tequila" Entonces
             Precio = 80
@@ -16,15 +13,15 @@ inicio
                 Si Bebida = "Whisky" Entonces
                     Precio = 100
                 SiNo
+                    "Bebida no registrada"
                     Precio = 0
-                    Escribir "Bebida no registrada"
                 FinSi
             FinSi
         FinSi
 
         SumaT = SumaT + Precio
 
-        Escribir "¿Quieres pedir otra bebida? (S/N)"
-  Cuando responda que no se detiene 
-    Escribir "El total a pagar es: ", SumaT
-FinAlgoritmo
+        ¿Quieres pedir otra bebida? (S/N)
+  Cuando responda que N se detiene
+    El total a pagar es: , SumaT
+Fin
