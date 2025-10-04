@@ -1,4 +1,59 @@
 ##Proyecto
+## aquí voy a meter todos los diccionarios que haga para tenr una base de datos y ocuparlos mas adelante
+tequilas = {"Nombre" :"Tequila",
+            "Tipo" : 
+                      {"Centenario plata":{"Precio":90},
+                       "Centenario azul":{"Precio":90},
+                       "Centenario reposado":{"Precio":90},
+                       "Cuervo especial" : {"Precio":90},
+                       "Cuervo plata": {"Precio":90},
+                       "Herradura antiguo": {"Precio":100},
+                       "Hornitos reposado" : {"Precio":100},
+                       "Tradicional reposado":{"Precio":100},
+                       "Tradicional plata": {"Precio":100},
+                       "Maestro dobel": {"Precio":130},
+                       "Don julio reposado": {"Precio":130},
+                       "1800 Cristalino": {"Precio":150},
+                       "Don julio 70": {"Precio":170}
+                     }}
+
+cervezas = {"Nombre" :"Cerveza",
+            "Tipo" : 
+                      {"Corona":{"Precio":55},
+                       "Victoria":{"Precio":55},
+                       "Ligth":{"Precio":60},
+                       "Ultra" : {"Precio":60},
+                       "Pacifico": {"Precio":60},
+                       "Modelo especial": {"Precio":60},
+                       "Modelo oscura": {"Precio":60},
+                       "Ambar": {"Precio":60}
+                     }}
+
+whiskys = {"Nombre" :"Whisky",
+            "Tipo" : 
+                      {"JB":{"Precio":90},
+                       "Black n white":{"Precio":90},
+                       "Etiqueta roja":{"Precio":100},
+                       "Jacks daniels" : {"Precio":100},
+                       "Chivas 12": {"Precio":130},
+                       "Buchanas": {"Precio":150},
+                       "Etiqueta negra" : {"Precio":170},
+                       "Glenfuddich":{"Precio":200},
+                       "Glenlivet 12 doble oak": {"Precio":200},
+                     }}
+
+## Esta lista es para que busque en los dicionarios 
+bebidas = [tequilas,cervezas,whiskys]
+
+## Aqui estaran las listas de todas las bebidas
+Lista_tequilas = ("\nCentenario plata","Centenario azul","Centenario reposado","Cuervo especial","Cuervo plata",
+                  "Herradura antiguo", "Hornitos reposado", "Tradicional reposado","Tradicional plata","Maestro dobel",
+                  "Don julio reposado","1800 Cristalino","Don julio 70")
+
+Lista_cervezas = ("Corona","Victoria","Ligth","Ultra","Pacifico","Modelo especial","Modelo oscura","Ambar")
+
+Lista_whiskys = ("JB","Black n white","Etiqueta roja","Jacks daniels","Chivas 12","Buchanas","Etiqueta negra","Glenfuddich","Glenlivet 12 doble oak")
+
 ## esta función la hago para caulcular la propina que van a dejar 
 def propina (Prop,SumaT):
         P = Prop * SumaT/100
@@ -13,66 +68,14 @@ def Total(P,SumaT) :
 ## Esta función sirve para saber que tequila quiere y dependiendo del tequila 
 # el precio se ajusta 
 
-def Tequilas (T):
-    Suma = 0
-    if T == "1" :
-            Precio = 90
-            Suma = Suma + Precio 
-            return Suma
-    
-    else:
-           if T == "2" :
-                  Precio = 90
-                  Suma = Suma + Precio 
-                  return Suma
-           else :
-                  if T == "3" :
-                         Precio = 100
-                         Suma = Suma + Precio 
-                         return Suma
-                  return 0
-
-## Esta función sirve para calcular que whisky quieren y darles el precio 
-def Whisky (W):
-    Suma = 0
-    if W == "1":
-            Precio = 90
-            Suma = Suma + Precio 
-            return Suma
-    
-    else:
-           if W == "2":
-                  Precio = 100
-                  Suma = Suma + Precio 
-                  return Suma
-           else :
-                  if W == "3":
-                         Precio = 170
-                         Suma = Suma + Precio 
-                         return Suma
-                  return 0
-## Función de Cervezas para calcular su precio y sumarlo 
-def Cerveza (C):
-      Suma = 0
-      if C == "1":
-            Precio = 55
-            Suma = Suma + Precio 
-            return Suma
-      else :
-            if C == "2":
-                  Precio = 55
-                  Suma = Suma + Precio
-                  return Suma
-            else : 
-                  if C == "3":
-                        Precio = 60
-                        Suma = Suma + Precio
-                        return Suma
-                  else : 
-                        if C == "4":
-                              Precio = 60
-                              Suma = Suma + Precio
-                              return Suma 
+def buscar (bebida, tipo):
+    for i in bebidas:
+        if i ["Nombre"] == bebida :
+            for tip , dat in i["Tipo"].items():
+                if tip == tipo:
+                    return dat["Precio"]
+            return "no tenemos"
+        
 ## Funión para calcular el precio del Ron
 def Ron (R):
       Suma = 0
@@ -112,27 +115,30 @@ while R == "S":
     
         if bebida == "Tequila":
               print("\nQue tequila quieres?")
-              print("1)Centenario plata\n2)Cuervo especial\n3)Tradicional reposado")
+              for item in Lista_tequilas:
+                    print(item)
               Teq = input()
-              Precio = Tequilas (Teq)
+              Precio = buscar (bebida,Teq)
               SumaT = SumaT + Precio 
               T = T + 1
         
         else:
             if bebida == "Cerveza":
                 print("\nQue cerveza quieres?")
-                print("1)Corona\n2)Victoria\n3)Pacifico\n4)Ultra")
+                for item in Lista_cervezas:
+                     print(item)
                 Cer = input()
-                Precio = Cerveza (Cer)
+                Precio = buscar (bebida,Cer)
                 SumaT = SumaT + Precio
                 C = C + 1
         
             else:
                 if bebida == "Whisky":
                     print("\nQue Whisky quieres?")
-                    print("1)Etiqueta roja\n2)Etiqueta negra\n3)Black and White")
+                    for item in Lista_whiskys:
+                         print(item)
                     Wh = input()
-                    Precio = Whisky (Wh)
+                    Precio = buscar (bebida,Wh)
                     SumaT = SumaT + Precio
                     W = W + 1
             
