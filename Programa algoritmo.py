@@ -1,5 +1,5 @@
 ##Proyecto
-## aquí voy a meter todos los diccionarios que haga para tenr una base de datos y ocuparlos mas adelante
+## aquí voy a meter todos los diccionarios que haga para tenr una base de datos y ocuparlos mas adelante ( el profe nos los hace validos como listas nos dijo el )
 tequilas = {"Nombre" :"Tequila",
             "Tipo" : 
                       {"Centenario plata":{"Precio":90},
@@ -177,3 +177,4 @@ else:
             print ("Tu total a pagar con propina es:",Total(P,SumaT))
         else :
             print ("Tu total a pagar es:", SumaT)
+
