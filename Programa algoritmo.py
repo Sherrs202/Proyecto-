@@ -1,5 +1,5 @@
 ##Proyecto
-## aquí voy a meter todos los diccionarios que haga para tenr una base de datos y ocuparlos mas adelante ( el profe nos los hace validos como listas nos dijo el )
+## aqeui voy a meter todos los diccionarios que haga ( el profe nos dejo hacerlo y cuenta como listas)
 tequilas = {"Nombre" :"Tequila",
             "Tipo" : 
                       {"Centenario plata":{"Precio":90},
@@ -26,7 +26,8 @@ cervezas = {"Nombre" :"Cerveza",
                        "Pacifico": {"Precio":60},
                        "Modelo especial": {"Precio":60},
                        "Modelo oscura": {"Precio":60},
-                       "Ambar": {"Precio":60}
+                       "Ambar": {"Precio":60},
+                       "Estela":{"Precio":60}
                      }}
 
 whiskys = {"Nombre" :"Whisky",
@@ -42,8 +43,53 @@ whiskys = {"Nombre" :"Whisky",
                        "Glenlivet 12 doble oak": {"Precio":200},
                      }}
 
+ron = {"Nombre" :"Ron",
+            "Tipo" : 
+                      {"Apppleton state":{"Precio":90},
+                       "Flor de caña 4":{"Precio":90},
+                       "Matusalen clasico":{"Precio":90},
+                       "Matusalen platino" : {"Precio":190},
+                       "Ron potosi": {"Precio":90},
+                       "Appleton esp": {"Precio":90},
+                       "Bacardi blanco" : {"Precio":90},
+                       "Bacardi añejo":{"Precio":90},
+                       "Bacardi solera": {"Precio":90},
+                       "Castillo": {"Precio":90},
+                       "Malibu": {"Precio":90},
+                       "Appleton blanco": {"Precio":90},
+                       "Flor de caña blanco": {"Precio":90},
+                       "Flor de caña 7": {"Precio":95},
+                       "Mastusalen gran reserva": {"Precio":100},
+                       "Havanna club 7": {"Precio":100},
+                       "Bacardi 8": {"Precio":135},
+                       "Zacapa 23": {"Precio":220}
+                     }}
+
+brandy = {"Nombre" :"Brandy",
+            "Tipo" : 
+                      {"Presidente":{"Precio":80},
+                       "Don pedro":{"Precio":80},
+                       "Torres 5":{"Precio":90},
+                       "Torres 10": {"Precio":90},
+                       "Azteca de oro": {"Precio":90},
+                       "Terry": {"Precio":90},
+                       "Fundador": {"Precio":90},
+                       "Parris-torres": {"Precio":100}
+                     }}
+
+vodka = {"Nombre" :"Vodka",
+            "Tipo" : 
+                      {"Ocsolut LALO":{"Precio":60},
+                       "Stolichnaya":{"Precio":90},
+                       "Absolut":{"Precio":90},
+                       "Oso negro": {"Precio":90},
+                       "Smirnoff": {"Precio":90}
+                     }}
+
+
+
 ## Esta lista es para que busque en los dicionarios 
-bebidas = [tequilas,cervezas,whiskys]
+bebidas = [tequilas,cervezas,whiskys,ron,brandy,vodka]
 
 ## Aqui estaran las listas de todas las bebidas
 Lista_tequilas = ("\nCentenario plata","Centenario azul","Centenario reposado","Cuervo especial","Cuervo plata",
@@ -53,6 +99,15 @@ Lista_tequilas = ("\nCentenario plata","Centenario azul","Centenario reposado","
 Lista_cervezas = ("Corona","Victoria","Ligth","Ultra","Pacifico","Modelo especial","Modelo oscura","Ambar")
 
 Lista_whiskys = ("JB","Black n white","Etiqueta roja","Jacks daniels","Chivas 12","Buchanas","Etiqueta negra","Glenfuddich","Glenlivet 12 doble oak")
+
+Lista_rones = ("Appleton state","Flor de caña","Matusalen clasico","Matusalen platino","Ron potosi","Appleton esp","Bacardi blanco","Bacardi añejo","Bacardi solera","Castillo","Malibu","Appleton blanco",
+               "Flor de caña blanco","Flor de caña 7","Matusalen gran reserva","Havvana club 7","Bacardi 8","Zacapa 23")
+
+Lista_brandy = ("Presidente","Don pedro","Torres 5","Torres 10","Azteca de oro","Terry","Fundador","Paris-torres")
+
+Lista_vodkas = ("Ocsolut LALO","Stolichnaya","Absolut","Oso negro","Smirnoff")
+
+
 
 ## esta función la hago para caulcular la propina que van a dejar 
 def propina (Prop,SumaT):
@@ -76,35 +131,15 @@ def buscar (bebida, tipo):
                     return dat["Precio"]
             return "no tenemos"
         
-## Funión para calcular el precio del Ron
-def Ron (R):
-      Suma = 0
-      if R == "1":
-            Precio = 90
-            Suma = Suma + Precio
-            return Suma
-      else : 
-            if R == "2":
-                  Precio = 90
-                  Suma = Suma + Precio 
-                  return Suma 
-            else:
-                  if R == "3":
-                        Precio = 90
-                        Suma = Suma + Precio 
-                        return Suma
-                  else : 
-                        if R == "4":
-                              Precio = 95
-                              Suma = Suma + Precio 
-                              return Suma 
-                                   
+
 ## Estos valores se los puse para lograr saber de cuales han consumido y si tienen una 
-## queja que vayam a barra a preguntar
+## queja que vayan a barra a preguntar
 W = 0
 C = 0
 T = 0
 ror = 0
+B = 0
+V = 0
 SumaT=0
 R = input ("Quiere registrar una bebida? (S/N): ")
 
@@ -145,16 +180,34 @@ while R == "S":
                 else:
                     if bebida == "Ron":
                           print("\nQue ron quieres?")
-                          print("1)Bacardi\n2)Potosi\n3)Matusalen Clasico\n4)Flor de Caña 7")
+                          for item in Lista_rones:
+                               print(item)
                           Ro = input ()
-                          Precio = Ron (Ro)
+                          Precio = buscar (bebida,Ro)
                           SumaT = SumaT + Precio 
                           ror = ror  + 1
                     else:
-                          print("Bebida no registrada")
-                    
-        
-            
+                          if bebida == "Brandy":
+                               print("\nQue brandy quieres")
+                               for item in Lista_brandy:
+                                    print (item)
+                               Bra = input()
+                               Precio = buscar (bebida,Bra)
+                               SumaT = SumaT + Precio
+                               B = B + 1
+                          else :
+                               if bebida == "Vodka" :
+                                    print ("\nQue vodka quieres")
+                                    for item in Lista_vodkas:
+                                         print (item)
+                                    Vod = input()
+                                    Precio = buscar (bebida,Vod)
+                                    SumaT = SumaT + Precio
+                                    V = V + 1 
+                               else :
+                                    print ("Bebida no registrada")
+                          
+                      
         Respuesta = input("\nQuiere registrar otra bebida? (S/N): ")
         
         if Respuesta == "N":
@@ -162,7 +215,8 @@ while R == "S":
 if R == "N":
       print ("No debes nada")
 else:
-    print("Consumo total \n", T , "Tequila(s)\n", W , "Whisky(s)\n", C,"Cerveza(s)\n", ror , "Ron" )
+    print("Consumo total \n", T , "Tequila(s)\n", W , "Whisky(s)\n", C,"Cerveza(s)\n", ror , "Ron\n",B , "Brandy(s)\n", V,"Vodka(s)"
+          )
     res = input("\nEs correcto (S/N)")
     if res =="N":
           print ("\nCheque con barra")
@@ -177,4 +231,3 @@ else:
             print ("Tu total a pagar con propina es:",Total(P,SumaT))
         else :
             print ("Tu total a pagar es:", SumaT)
-
