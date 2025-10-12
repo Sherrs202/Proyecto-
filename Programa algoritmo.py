@@ -86,10 +86,29 @@ vodka = {"Nombre" :"Vodka",
                        "Smirnoff": {"Precio":90}
                      }}
 
+mezcal = {"Nombre" :"Mezcal",
+            "Tipo" : 
+                      {"400 conejos":{"Precio":130},
+                       "Gusano rojo":{"Precio":130},
+                       "Naksir":{"Precio":130}
+                     }}
 
+gin = {"Nombre" :"Gin",
+            "Tipo" : 
+                      {"Oso negro gin":{"Precio":90},
+                       "Beefeater":{"Precio":100},
+                       "Tanqueray":{"Precio":130}
+                     }}
+
+anis = {"Nombre" :"Anis",
+            "Tipo" : 
+                      {"Mico dulce":{"Precio":90},
+                       "Sambuca vaccari":{"Precio":100},
+                       "Chichon dulce":{"Precio":125}
+                     }}
 
 ## Esta lista es para que busque en los dicionarios 
-bebidas = [tequilas,cervezas,whiskys,ron,brandy,vodka]
+bebidas = [tequilas,cervezas,whiskys,ron,brandy,vodka,mezcal,gin,anis]
 
 ## Aqui estaran las listas de todas las bebidas
 Lista_tequilas = ("\nCentenario plata","Centenario azul","Centenario reposado","Cuervo especial","Cuervo plata",
@@ -107,7 +126,11 @@ Lista_brandy = ("Presidente","Don pedro","Torres 5","Torres 10","Azteca de oro",
 
 Lista_vodkas = ("Ocsolut LALO","Stolichnaya","Absolut","Oso negro","Smirnoff")
 
+Lista_mezcal = ("400 conejos","Gusano rojo","Naksir")
 
+Lista_gin = ("Oso negro gin","Beefeater","Tanqueray")
+
+Lista_anis = ("Mico dulce","Sambuca vaccari","Chichon dulce")
 
 ## esta función la hago para caulcular la propina que van a dejar 
 def propina (Prop,SumaT):
@@ -140,12 +163,15 @@ T = 0
 ror = 0
 B = 0
 V = 0
+M = 0
+G = 0
+A = 0
 SumaT=0
 R = input ("Quiere registrar una bebida? (S/N): ")
-
+## Este ciclo es para que se pueda registrar varias bebidas y asi poder ir acumulando el precio de cada una
 while R == "S":
         print ("\nQue bebida quieres?")
-        print ("Tequila\nCerveza\nWhisky\nRon\nBrandy\n")
+        print ("Tequila\nCerveza\nWhisky\nRon\nBrandy\nVodka\nMezcal\nGin\nAnis")
         bebida = input()
     
         if bebida == "Tequila":
@@ -205,9 +231,35 @@ while R == "S":
                                     SumaT = SumaT + Precio
                                     V = V + 1 
                                else :
-                                    print ("Bebida no registrada")
-                          
-                      
+                                    if bebida == "Mezcal":
+                                         print ("\nQue mezcal quieres")
+                                         for item in Lista_mezcal:
+                                              print (item)
+                                         Mez = input()
+                                         Precio = buscar (bebida,Mez)
+                                         SumaT = SumaT + Precio
+                                         M = M + 1
+                                    else:
+                                         if bebida == "Gin":
+                                              print("\nQue ginebra quieres")
+                                              for item in Lista_gin:
+                                                   print (item)
+                                              Gin = input()
+                                              Precio = buscar (bebida,Gin)
+                                              SumaT = SumaT + Precio
+                                              G = G + 1
+                                         else:
+                                              if bebida == "Anis":
+                                                   print ("\nQue anis quieres")
+                                                   for item in Lista_anis:
+                                                        print (item)
+                                                   Ani = input()
+                                                   Precio = buscar (bebida,Ani)
+                                                   SumaT = SumaT + Precio
+                                                   A = A + 1
+                                              else:
+                                                   print ("Bebida no registrada")
+                     
         Respuesta = input("\nQuiere registrar otra bebida? (S/N): ")
         
         if Respuesta == "N":
@@ -215,8 +267,8 @@ while R == "S":
 if R == "N":
       print ("No debes nada")
 else:
-    print("Consumo total \n", T , "Tequila(s)\n", W , "Whisky(s)\n", C,"Cerveza(s)\n", ror , "Ron\n",B , "Brandy(s)\n", V,"Vodka(s)"
-          )
+    print("Consumo total \n", T , "Tequila(s)\n", W , "Whisky(s)\n", C,"Cerveza(s)\n", ror , "Ron\n",B , "Brandy(s)\n", V,"Vodka(s)\n",
+           M ,"Mezcal(s)\n", G, "Gin(s)\n", A , "Anis(s)\n" )
     res = input("\nEs correcto (S/N)")
     if res =="N":
           print ("\nCheque con barra")
