@@ -1,16 +1,14 @@
-##Proyecto
+# Proyecto
+# Bibliotecas
+from prettytable import PrettyTable  # type: ignore
 
-#Biblotecas
-from prettytable import PrettyTable #type : ignore 
 
 """
-================== Dicionarios  =====================================
+================== Diccionarios =====================================
+Estos diccionarios sirven como una base de datos que ayuda
+a identificar el precio y tipo de bebidas disponibles.
 """
-"""
-Estos dicionarios sirven para tener como una base 
-de datos que me ayudan a identificar el precio
-y el tipo de bebidas que buscan
-"""
+
 
 Tequila = {
     "Nombre": "Tequila",
@@ -137,65 +135,46 @@ Anis = {
     }
 }
 
-"""
-================== Lista  =====================================
-"""
-
-bebidas = [Tequila,Cerveza,Whisky,Ron,Brandy,Vodka,Mezcal,Gin,Anis]
-"""
-Estas lista me ayuda a buscar por el nombre de bebida que
-quiera el cliente
-"""
 
 """
-================= Funciones precio y buscar  ==========================
+================== Lista =====================================
+Esta lista sirve para buscar las bebidas por su nombre.
 """
 
-def propina(prop, suma_t):
-    """
-    La función propina recibe el porcentaje que 
-    el cliente quiera dejar de 
-    propina y se lo multiplica al precio total 
-    logrando sacar la propina,
-    recibe el porcentaje de propina que el usuario quiera dejar y te 
-    regresa la propina del total
-    """
-    p = prop * suma_t / 100
-    return p
+bebidas = [
+    Tequila, Cerveza, Whisky, Ron,
+    Brandy, Vodka, Mezcal, Gin, Anis
+]
 
-def total(p, suma_t):
-    """
-    La función total me ayuda a calcular la suma de la propina 
-    y del total que consumio, recibe la propina el porcentaje de propina
-    que quiere dejar el usuario y la suma de todo lo que consumio
-    para regresar el total con propina
-    """
-    total_pagar = p + suma_t
-    return total_pagar
+
+"""
+================== Funciones precio y buscar ==========================
+"""
+
+
+def propina(porcentaje, subtotal):
+    """Calcula la propina según el porcentaje indicado."""
+    return porcentaje * subtotal / 100
+
+
+def total(propina_valor, subtotal):
+    """Devuelve el total a pagar con propina."""
+    return propina_valor + subtotal
+
 
 def buscar(bebida, tipo):
-    """
-    Esta funcion me ayuda a poder buscar y calcular 
-    el precio de cada bebida y su tipo logrando 
-    guardar ese precio y usarlo mas adelante, recibe la bebida
-    y el tipo de bebida que quiere el cliente 
-    regresandote el precio de esta
-    """
+    """Busca el precio de una bebida y tipo específico."""
     for i in bebidas:
-        if i["Nombre"] == bebida:
+        if i["Nombre"].lower() == bebida.lower():
             for tip, dat in i["Tipo"].items():
-                if tip == tipo:
+                if tip.lower() == tipo.lower():
                     return dat["Precio"]
-            return "no tenemos"
+            return "No tenemos ese tipo."
+    return "Bebida no registrada."
+
 
 def mostrar_tipos(bebida):
-    """
-    Me ayuda a mostrar los tipos de bebida que el cliente quiera
-    en forma de tabla para que se alcance a ver de mejor forma,
-    recibe la bebida que quiere el cliente para que regrese
-    una tabla con los tipos de la bebida que desea
-    """
-    from prettytable import PrettyTable # type: ignore
+    """Muestra los tipos disponibles de una bebida en una tabla."""
     tabla = PrettyTable()
     tabla.field_names = ["N°", "Tipo", "Precio"]
     tipos = list(bebida["Tipo"].keys())
@@ -208,144 +187,135 @@ def mostrar_tipos(bebida):
     print(tabla)
     return tipos
 
+
 """
 ================== Variables =====================================
 """
 
-w = 0
-c = 0
-t = 0
-ror = 0
-b = 0
-v = 0
-m = 0
-g = 0
-a = 0
-suma_t = 0
+total_tequila = 0
+total_cerveza = 0
+total_whisky = 0
+total_ron = 0
+total_brandy = 0
+total_vodka = 0
+total_mezcal = 0
+total_gin = 0
+total_anis = 0
+suma_total = 0
 
-r = input("Quiere registrar una bebida? (S/N): ")
 
-"""
-El ciclo ayuda a registrar el total de bebidas que el cliente consuma
-y al final le de su total apagar preguntando si quiere dejar propina
-"""
+r = input("¿Quiere registrar una bebida? (S/N): ").strip().upper()
+
 
 """
-================== Codigo principal ===================================
+================== Código principal ===================================
 """
 
 while r == "S":
-    print("\nQue bebida quieres?")
-    print("Tequila\nCerveza\nWhisky\nRon\nBrandy"
-          "\nVodka\nMezcal\nGin\nAnis")
-    bebida = input()
+    print(
+        "\n¿Qué bebida quieres?\n"
+        "Tequila\nCerveza\nWhisky\nRon\nBrandy\n"
+        "Vodka\nMezcal\nGin\nAnis"
+    )
+    bebida = input().capitalize()
 
     if bebida == "Tequila":
-        print("\nQue tequila quieres?")
         mostrar_tipos(Tequila)
-        teq = input()
-        precio = buscar(bebida, teq)
-        suma_t += precio
-        t += 1
+        tipo = input("\n¿Qué tequila quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_tequila += 1
 
     elif bebida == "Cerveza":
-        print("\nQue cerveza quieres?")
         mostrar_tipos(Cerveza)
-        cer = input()
-        precio = buscar(bebida, cer)
-        suma_t += precio
-        c += 1
+        tipo = input("\n¿Qué cerveza quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_cerveza += 1
 
     elif bebida == "Whisky":
-        print("\nQue whisky quieres?")
         mostrar_tipos(Whisky)
-        wh = input()
-        precio = buscar(bebida, wh)
-        suma_t += precio
-        w += 1
+        tipo = input("\n¿Qué whisky quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_whisky += 1
 
     elif bebida == "Ron":
-        print("\nQue ron quieres?")
         mostrar_tipos(Ron)
-        ro = input()
-        precio = buscar(bebida, ro)
-        suma_t += precio
-        ror += 1
+        tipo = input("\n¿Qué ron quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_ron += 1
 
     elif bebida == "Brandy":
-        print("\nQue brandy quieres?")
         mostrar_tipos(Brandy)
-        bra = input()
-        precio = buscar(bebida, bra)
-        suma_t += precio
-        b += 1
+        tipo = input("\n¿Qué brandy quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_brandy += 1
 
     elif bebida == "Vodka":
-        print("\nQue vodka quieres?")
         mostrar_tipos(Vodka)
-        vod = input()
-        precio = buscar(bebida, vod)
-        suma_t += precio
-        v += 1
+        tipo = input("\n¿Qué vodka quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_vodka += 1
 
     elif bebida == "Mezcal":
-        print("\nQue mezcal quieres?")
         mostrar_tipos(Mezcal)
-        mez = input()
-        precio = buscar(bebida, mez)
-        suma_t += precio
-        m += 1
+        tipo = input("\n¿Qué mezcal quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_mezcal += 1
 
     elif bebida == "Gin":
-        print("\nQue ginebra quieres?")
         mostrar_tipos(Gin)
-        gin_ = input()
-        precio = buscar(bebida, gin_)
-        suma_t += precio
-        g += 1
+        tipo = input("\n¿Qué gin quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_gin += 1
 
     elif bebida == "Anis":
-        print("\nQue anis quieres?")
         mostrar_tipos(Anis)
-        ani = input()
-        precio = buscar(bebida, ani)
-        suma_t += precio
-        a += 1
+        tipo = input("\n¿Qué anis quieres?: ")
+        precio = buscar(bebida, tipo)
+        suma_total += precio
+        total_anis += 1
 
     else:
-        print("Bebida no registrada")
+        print("Bebida no registrada.")
 
-    respuesta = input("\nQuiere registrar otra bebida? (S/N): ")
+    respuesta = input("\n¿Registrar otra bebida? (S/N): ").strip().upper()
     if respuesta == "N":
         break
 
+
 if r == "N":
-    print("No debes nada")
+    print("No debes nada.")
 else:
     print(
-        "Consumo total \n",
-        t, "Tequila(s)\n",
-        w, "Whisky(s)\n",
-        c, "Cerveza(s)\n",
-        ror, "Ron(es)\n",
-        b, "Brandy(s)\n",
-        v, "Vodka(s)\n",
-        m, "Mezcal(es)\n",
-        g, "Gin(s)\n",
-        a, "Anis(es)\n"
+        "\nConsumo total:\n"
+        f"{total_tequila} Tequila(s)\n"
+        f"{total_whisky} Whisky(s)\n"
+        f"{total_cerveza} Cerveza(s)\n"
+        f"{total_ron} Ron(es)\n"
+        f"{total_brandy} Brandy(s)\n"
+        f"{total_vodka} Vodka(s)\n"
+        f"{total_mezcal} Mezcal(es)\n"
+        f"{total_gin} Gin(s)\n"
+        f"{total_anis} Anis(es)\n"
     )
 
-    res = input("\nEs correcto (S/N): ")
-    if res == "N":
-        print("\nCheque con barra")
+    confirmar = input("\n¿Es correcto? (S/N): ").strip().upper()
+    if confirmar == "N":
+        print("Cheque con barra.")
     else:
-        print("Quiere dejar propina? (S/N)")
-        res_prop = input()
+        res_prop = input("¿Quiere dejar propina? (S/N): ").strip().upper()
         if res_prop == "S":
-            prop = int(input("Cuanto porcentaje de propina quiere dejar?: "))
-            p = propina(prop, suma_t)
-            print("Tu total sin propina es", suma_t)
-            print("La propina es de", p)
-            print("Tu total a pagar con propina es:", total(p, suma_t))
+            porcentaje = int(input("¿Cuánto porcentaje de propina?: "))
+            p = propina(porcentaje, suma_total)
+            print(f"Tu total sin propina es: {suma_total}")
+            print(f"La propina es de: {p}")
+            print(f"Tu total a pagar con propina es: {total(p, suma_total)}")
         else:
-            print("Tu total a pagar es:", suma_t)
+            print(f"Tu total a pagar es: {suma_total}")
