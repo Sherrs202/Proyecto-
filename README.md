@@ -7,8 +7,9 @@ Este programa pide al usuario si quiere registrar una bebida preguntandole si si
 ( si elegiste tequila te mostrara los tipos de este) con su precio y al final te preguntara si quireres registrar otra bebida si le pones que no este te podra dar tu propina y el total a pagar por lo que consumiste
 
 Instrucciones 
-Descargar el archivo y correr en la terminal con:
 
+Descargar el archivo y correr en la terminal con:
+Proyecto.py
 
 
 
