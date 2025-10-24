@@ -1,6 +1,6 @@
-##TC1028
+TC1028##
 
-##Mi propuesta de proyecto 
+Mi propuesta de proyecto##
 
 
 Contexto 
