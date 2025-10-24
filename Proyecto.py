@@ -1,14 +1,15 @@
-# Proyecto
-# Bibliotecas
-from prettytable import PrettyTable  # type: ignore
-
+#Proyecto
+#Biblotecas
+from prettytable import PrettyTable #type : ignore 
 
 """
-================== Diccionarios =====================================
-Estos diccionarios sirven como una base de datos que ayuda
-a identificar el precio y tipo de bebidas disponibles.
+================== Dicionarios  =====================================
 """
-
+"""
+Estos dicionarios sirven para tener como una base 
+de datos que me ayudan a identificar el precio
+y el tipo de bebidas que buscan
+"""
 
 Tequila = {
     "Nombre": "Tequila",
@@ -135,46 +136,68 @@ Anis = {
     }
 }
 
-
 """
-================== Lista =====================================
-Esta lista sirve para buscar las bebidas por su nombre.
+================== Lista  =====================================
 """
 
 bebidas = [
-    Tequila, Cerveza, Whisky, Ron,
+    Tequila, Cerveza, Whisky, Ron, 
     Brandy, Vodka, Mezcal, Gin, Anis
-]
-
+    ]
+"""
+Estas lista me ayuda a buscar por el nombre de bebida que
+quiera el cliente
+"""
 
 """
-================== Funciones precio y buscar ==========================
+================= Funciones precio y buscar  ==========================
 """
 
+def propina(prop, suma_t):
+    """
+    La función propina recibe el porcentaje que 
+    el cliente quiera dejar de 
+    propina y se lo multiplica al precio total 
+    logrando sacar la propina,
+    recibe el porcentaje de propina que el usuario quiera dejar y te 
+    regresa la propina del total
+    """
+    p = prop * suma_t / 100
+    return p
 
-def propina(porcentaje, subtotal):
-    """Calcula la propina según el porcentaje indicado."""
-    return porcentaje * subtotal / 100
-
-
-def total(propina_valor, subtotal):
-    """Devuelve el total a pagar con propina."""
-    return propina_valor + subtotal
-
+def total(p, suma_t):
+    """
+    La función total me ayuda a calcular la suma de la propina 
+    y del total que consumio, recibe la propina el porcentaje de propina
+    que quiere dejar el usuario y la suma de todo lo que consumio
+    para regresar el total con propina
+    """
+    total_pagar = p + suma_t
+    return total_pagar
 
 def buscar(bebida, tipo):
-    """Busca el precio de una bebida y tipo específico."""
+    """
+    Esta funcion me ayuda a poder buscar y calcular 
+    el precio de cada bebida y su tipo logrando 
+    guardar ese precio y usarlo mas adelante, recibe la bebida
+    y el tipo de bebida que quiere el cliente 
+    regresandote el precio de esta
+    """
     for i in bebidas:
-        if i["Nombre"].lower() == bebida.lower():
+        if i["Nombre"] == bebida:
             for tip, dat in i["Tipo"].items():
-                if tip.lower() == tipo.lower():
+                if tip == tipo:
                     return dat["Precio"]
-            return "No tenemos ese tipo."
-    return "Bebida no registrada."
-
+            return "no tenemos"
 
 def mostrar_tipos(bebida):
-    """Muestra los tipos disponibles de una bebida en una tabla."""
+    """
+    Me ayuda a mostrar los tipos de bebida que el cliente quiera
+    en forma de tabla para que se alcance a ver de mejor forma,
+    recibe la bebida que quiere el cliente para que regrese
+    una tabla con los tipos de la bebida que desea
+    """
+    from prettytable import PrettyTable # type: ignore
     tabla = PrettyTable()
     tabla.field_names = ["N°", "Tipo", "Precio"]
     tipos = list(bebida["Tipo"].keys())
@@ -187,13 +210,12 @@ def mostrar_tipos(bebida):
     print(tabla)
     return tipos
 
-
 """
 ================== Variables =====================================
 """
 
 total_tequila = 0
-total_cerveza = 0
+total_cerveza = 0 
 total_whisky = 0
 total_ron = 0
 total_brandy = 0
@@ -203,12 +225,15 @@ total_gin = 0
 total_anis = 0
 suma_total = 0
 
-
 r = input("¿Quiere registrar una bebida? (S/N): ").strip().upper()
 
+"""
+El ciclo ayuda a registrar el total de bebidas que el cliente consuma
+y al final le de su total apagar preguntando si quiere dejar propina
+"""
 
 """
-================== Código principal ===================================
+================== Codigo principal ===================================
 """
 
 while r == "S":
@@ -283,15 +308,14 @@ while r == "S":
         total_anis += 1
 
     else:
-        print("Bebida no registrada.")
+        print("Bebida no registrada")
 
-    respuesta = input("\n¿Registrar otra bebida? (S/N): ").strip().upper()
+    respuesta = input("\nQuiere registrar otra bebida? (S/N): ")
     if respuesta == "N":
         break
 
-
 if r == "N":
-    print("No debes nada.")
+    print("No debes nada")
 else:
     print(
         "\nConsumo total:\n"
