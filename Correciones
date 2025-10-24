@@ -1,0 +1,59 @@
+============================ Corrección 1 =====================================
+Subcompetencia: 
+	componente: aplica nombres descriptivos que ayuden a entender a las variables 
+
+Error original: Habia puesto variables con nombres que no eran muy descriptivos 
+
+  C = 0
+  T = 0
+  ror = 0
+  B = 0
+  V = 0
+  M = 0
+  G = 0
+  A = 0
+  SumaT=0
+
+Cambio realizado: Agrege nombres que son descriptivos y ayudan a darse una idea de que es lo que se busca 
+
+  total_tequila = 0
+  total_cerveza = 0
+  total_whisky = 0
+  total_ron = 0
+  total_brandy = 0
+  total_vodka = 0
+  total_mezcal = 0
+  total_gin = 0
+  total_anis = 0
+  suma_total = 0
+
+Líneas de codigo donde se ve la correción: 195 a 201
+
+============================ Corrección 2 =====================================
+Subcompetencia:
+  Aplica funciones de manera adecuada para segmentar el código y mantener reusabilidad y modularidad
+
+Error original: Tenía dos lineas de codigo que podián quedarse solo a 1 con una función 
+
+Cambio realizado: Agregue una función que permite acortar esas lineas de código 
+
+def mostrar_tipos(bebida):
+    tabla = PrettyTable()
+    tabla.field_names = ["N°", "Tipo", "Precio"]
+    tipos = list(bebida["Tipo"].keys())
+
+    for i, tipo in enumerate(tipos, start=1):
+        precio = bebida["Tipo"][tipo]["Precio"]
+        tabla.add_row([i, tipo, precio])
+
+    print(f"\nTipos de {bebida['Nombre']}:")
+    print(tabla)
+    return tipos
+
+============================ Corrección 3 =====================================
+Subcompetencia:
+  Plantea una situación problema que le permita aplicar y demostrar sus conocimientos de programación 
+
+Error original: Mi README estaba mal por el echo que no explicaba bien que hacia mi código y mi algoritmo
+
+Cambio realizado: Lo organize de tal manera que se logre entender para que sirve mi código 
