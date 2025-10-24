@@ -3,7 +3,7 @@
 # La Sucursal
 
 
-Contexto ** 
+**Contexto ** 
 
 La cantina llamada la "Sucursal" tiene muchos clientes a lo largo de la semana, esto lleva a que algunas veces se lleguen a saturar los meseros y no logren escribir bien que bebidas siervieron y cuanto deben de cobrar ya que todavia escriben en comandas lo que llevan consumiendo cada cliente y hace que se dificulte entre ellos.
 
