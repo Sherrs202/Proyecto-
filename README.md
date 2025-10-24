@@ -21,3 +21,7 @@ python Proyecto.py
 o abrir con visual estudio. 
 
 Responder si deseas regsitrar una bebidas y que tipos de bebidas quieres registrar
+
+**Bibloteca**
+Ocupe la bibloteca de preattytable para que al momento de que imprima las bebidas estas tengan un formato de tabla
+y se alcance a ver de una mejor forma 
